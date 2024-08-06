@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Tempo",
+  "version": "1.0",
+  "description": "Control YouTube video speed with keyboard shortcuts",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css"],
+      "matches": ["*://*.youtube.com/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

@@ -1,0 +1,23 @@
+#tempo-speed-display {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#tempo-speed-display.animate {
+  animation: tempoFadeInOut 2s ease-in-out;
+}
+
+@keyframes tempoFadeInOut {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
