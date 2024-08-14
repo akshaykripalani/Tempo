@@ -24,6 +24,15 @@
   }
 
   function handleKeydown(event) {
+    // Check if the active element is an input, textarea, or has contenteditable attribute
+    const activeElement = document.activeElement;
+    const isEditable = activeElement.tagName === 'INPUT' || 
+                       activeElement.tagName === 'TEXTAREA' || 
+                       activeElement.isContentEditable;
+
+    // If we're in an editable field, don't intercept the keypress
+    if (isEditable) return;
+
     const video = document.querySelector('video');
     if (!video) return;
 
