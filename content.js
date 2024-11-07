@@ -33,7 +33,11 @@
     // If we're in an editable field, don't intercept the keypress
     if (isEditable) return;
 
-    const video = document.querySelector('video');
+    // Try multiple selectors that YouTube might use
+    const video = document.querySelector('video.html5-main-video') || 
+                 document.querySelector('.html5-video-player video') ||
+                 document.querySelector('video');
+                 
     if (!video) return;
 
     if (event.key === 'u') {
@@ -45,6 +49,16 @@
     }
   }
 
-  injectStyles();
-  document.addEventListener('keydown', handleKeydown);
+  // Wait for the video player to be ready
+  function init() {
+    injectStyles();
+    if (document.querySelector('video')) {
+      document.addEventListener('keydown', handleKeydown);
+    } else {
+      // If video isn't found, retry after a short delay
+      setTimeout(init, 1000);
+    }
+  }
+
+  init();
 })();
